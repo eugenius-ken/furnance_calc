@@ -1,0 +1,29 @@
+﻿
+@{
+    ViewBag.Title = "Вы успешно зарегистрированы";
+}
+
+<div style="text-align:center;">
+    <h3>Регистрация прошла успешно</h3>
+</div>
+<div style="text-align:center;">
+    <a href="@Url.Action("Login")">Вход</a>
+</div>
+
+
+@section scripts {
+
+    <script>
+
+        window.onload = function () {
+            setTimeout(function () {
+                window.location = window.location.origin + '/Account/Login';
+            }, 3000);
+        }
+
+
+    </script>
+
+
+}
+

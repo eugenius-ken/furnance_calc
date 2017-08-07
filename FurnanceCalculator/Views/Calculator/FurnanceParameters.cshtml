@@ -1,0 +1,115 @@
+﻿@model FurnanceCalculator.ViewModels.FurnanceParametersView
+
+@{
+    ViewBag.Title = "Характеристики печи";
+    var labelWidth = "col-md-6";
+    var inputWidth = "col-md-6";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div style="text-align:center;">
+        <h1>Исходные данные</h1>
+    </div>
+    <hr />
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2 form-horizontal">
+
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.Id)
+
+            <div class="panel panel-default">
+                <div class="panel-heading">Характеристики печи</div>
+                <div class="panel-body">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.FurnanceHeightZone1, htmlAttributes: new { @class = "control-label " + labelWidth })
+                        <div class="@inputWidth">
+                            <div class="input-group">
+                                <input type="number" step="0.01" class="form-control" name="FurnanceHeightZone1" value="@Model.FurnanceHeightZone1" aria-describedby="addonFurnanceHeightZone1" />
+                                <span class="input-group-addon" id="addonFurnanceHeightZone1">м</span>
+                            </div>
+                            @Html.ValidationMessageFor(model => model.FurnanceHeightZone1, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.WorkHeightSector0, htmlAttributes: new { @class = "control-label " + labelWidth })
+                        <div class="@inputWidth">
+                            <div class="input-group">
+                                <input type="number" step="0.01" class="form-control" name="WorkHeightSector0" value="@Model.WorkHeightSector0" aria-describedby="addonWorkHeightSector0" />
+                                <span class="input-group-addon" id="addonWorkHeightSector0">м</span>
+                            </div>
+                            @Html.ValidationMessageFor(model => model.WorkHeightSector0, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.WorkHeightSector1, htmlAttributes: new { @class = "control-label " + labelWidth })
+                        <div class="@inputWidth">
+                            <div class="input-group">
+                                <input type="number" step="0.01" class="form-control" name="WorkHeightSector1" value="@Model.WorkHeightSector1" aria-describedby="addonWorkHeightSector1" />
+                                <span class="input-group-addon" id="addonWorkHeightSector1">м</span>
+                            </div>
+                            @Html.ValidationMessageFor(model => model.WorkHeightSector1, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.WorkHeightSector2, htmlAttributes: new { @class = "control-label " + labelWidth })
+                        <div class="@inputWidth">
+                            <div class="input-group">
+                                <input type="number" step="0.01" class="form-control" name="WorkHeightSector2" value="@Model.WorkHeightSector2" aria-describedby="addonWorkHeightSector2" />
+                                <span class="input-group-addon" id="addonWorkHeightSector2">м</span>
+                            </div>
+                            @Html.ValidationMessageFor(model => model.WorkHeightSector2, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.FurnanceWidth, htmlAttributes: new { @class = "control-label " + labelWidth })
+                        <div class="@inputWidth">
+                            <div class="input-group">
+                                <input type="number" step="0.01" class="form-control" name="FurnanceWidth" value="@Model.FurnanceWidth" aria-describedby="addonFurnanceWidth" />
+                                <span class="input-group-addon" id="addonFurnanceWidth">м</span>
+                            </div>
+                            @Html.ValidationMessageFor(model => model.FurnanceWidth, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.FurnanceProductivity, htmlAttributes: new { @class = "control-label " + labelWidth })
+                        <div class="@inputWidth">
+                            <div class="input-group">
+                                <input type="number" step="0.01" class="form-control" name="FurnanceProductivity" value="@Model.FurnanceProductivity" aria-describedby="addonFurnanceProductivity" />
+                                <span class="input-group-addon" id="addonFurnanceProductivity">тонн/ч</span>
+                            </div>
+                            @Html.ValidationMessageFor(model => model.FurnanceProductivity, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.TorchType, htmlAttributes: new { @class = "control-label " + labelWidth })
+                        <div class="@inputWidth">
+                            @Html.EnumDropDownListFor(model => model.TorchType, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.TorchType, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-12">
+                <div class="form-group">
+                    <div class="pull-right">
+                        <input type="submit" value="Далее" class="btn btn-default" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

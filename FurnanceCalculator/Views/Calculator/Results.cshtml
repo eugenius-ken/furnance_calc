@@ -1,0 +1,483 @@
+﻿@model FurnanceCalculator.ViewModels.ResultView
+@using FurnanceCalculator.ViewModels;
+@{
+    ViewBag.Title = "Результаты расчета - " + Model.Name;
+    var labelWidth = "col-md-6";
+    var inputWidth = "col-md-6";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div style="text-align:center;">
+        <h1>Результаты - @Model.Name</h1>
+    </div>
+    <hr />
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <a href="@Url.Action("GetPdf", new { id = Model.Id })" class="pull-right" target="_blank" style="margin-bottom:10px;">Выгрузить в PDF</a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2 form-horizontal">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="panel panel-default">
+                <div class="panel-heading">Время нагрева заготовок</div>
+                <div class="panel-body">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.HeatingTimeZone1, htmlAttributes: new { @class = "control-label " + labelWidth })
+                        <div class="@inputWidth">
+                            <div class="input-group">
+                                <input type="number" step="0.01" @Html.Raw(Model.StyleHeatingTimeZone1) class="form-control"  name="HeatingTimeZone1" value="@Model.HeatingTimeZone1" aria-describedby="addonHeatingTimeZone1" readonly />
+                                <span class="input-group-addon" id="addonHeatingTimeZone1">ч</span>
+                            </div>
+                            @Html.ValidationMessageFor(model => model.HeatingTimeZone1, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.HeatingTimeZone2, htmlAttributes: new { @class = "control-label " + labelWidth })
+                        <div class="@inputWidth">
+                            <div class="input-group">
+                                <input type="number" step="0.01"  @Html.Raw(Model.StyleHeatingTimeZone2) class="form-control" name="HeatingTimeZone2" value="@Model.HeatingTimeZone2" aria-describedby="addonHeatingTimeZone2" readonly />
+                                <span class="input-group-addon" id="addonHeatingTimeZone2">ч</span>
+                            </div>
+                            @Html.ValidationMessageFor(model => model.HeatingTimeZone2, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.HeatingTimeZone3, htmlAttributes: new { @class = "control-label " + labelWidth })
+                        <div class="@inputWidth">
+                            <div class="input-group">
+                                <input type="number" step="0.01"  @Html.Raw(Model.StyleHeatingTimeZone3) class="form-control" name="HeatingTimeZone3" value="@Model.HeatingTimeZone3" aria-describedby="addonHeatingTimeZone3" readonly />
+                                <span class="input-group-addon" id="addonHeatingTimeZone3">ч</span>
+                            </div>
+                            @Html.ValidationMessageFor(model => model.HeatingTimeZone3, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.HeatingTimeFull, htmlAttributes: new { @class = "control-label " + labelWidth })
+                        <div class="@inputWidth">
+                            <div class="input-group">
+                                <input type="number" step="0.01" @Html.Raw(Model.StyleHeatingTimeFull) class="form-control" name="HeatingTimeFull" value="@Model.HeatingTimeFull" aria-describedby="addonHeatingTimeFull" readonly />
+                                <span class="input-group-addon" id="addonHeatingTimeFull">ч</span>
+                            </div>
+                            @Html.ValidationMessageFor(model => model.HeatingTimeFull, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel panel-default">
+                <div class="panel-heading">Длины зон</div>
+                <div class="panel-body">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.LengthFull, htmlAttributes: new { @class = "control-label " + labelWidth })
+                        <div class="@inputWidth">
+                            <div class="input-group">
+                                <input type="number" step="0.01" @Html.Raw(Model.StyleLengthFull) class="form-control" name="LengthFull" value="@Model.LengthFull" aria-describedby="addonLengthFull" readonly />
+                                <span class="input-group-addon" id="addonLengthFull">м</span>
+                            </div>
+                            @Html.ValidationMessageFor(model => model.LengthFull, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.LengthZone1, htmlAttributes: new { @class = "control-label " + labelWidth })
+                        <div class="@inputWidth">
+                            <div class="input-group">
+                                <input type="number" step="0.01" @Html.Raw(Model.StyleLengthZone1) class="form-control" name="LengthZone1" value="@Model.LengthZone1" aria-describedby="addonLengthZone1" readonly />
+                                <span class="input-group-addon" id="addonLengthZone1">м</span>
+                            </div>
+                            @Html.ValidationMessageFor(model => model.LengthZone1, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.LengthZone2, htmlAttributes: new { @class = "control-label " + labelWidth })
+                        <div class="@inputWidth">
+                            <div class="input-group">
+                                <input type="number" step="0.01" @Html.Raw(Model.StyleLengthZone2) class="form-control" name="LengthZone2" value="@Model.LengthZone2" aria-describedby="addonLengthZone2" readonly />
+                                <span class="input-group-addon" id="addonLengthZone2">м</span>
+                            </div>
+                            @Html.ValidationMessageFor(model => model.LengthZone2, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.LengthZone3, htmlAttributes: new { @class = "control-label " + labelWidth })
+                        <div class="@inputWidth">
+                            <div class="input-group">
+                                <input type="number" step="0.01" @Html.Raw(Model.StyleLengthZone3) class="form-control" name="LengthZone3" value="@Model.LengthZone3" aria-describedby="addonLengthZone2" readonly />
+                                <span class="input-group-addon" id="addonLengthZone3">м</span>
+                            </div>
+                            @Html.ValidationMessageFor(model => model.LengthZone3, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel panel-default">
+                <div class="panel-heading">Расчет горения топлива</div>
+                <div class="panel-body">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.ConsumptionTemperature, htmlAttributes: new { @class = "control-label " + labelWidth })
+                        <div class="@inputWidth">
+                            <div class="input-group">
+                                <input type="number" step="0.01" @Html.Raw(Model.StyleConsumptionTemperature) class="form-control" name="ConsumptionTemperature" value="@Model.ConsumptionTemperature" aria-describedby="addonConsumptionTemperature" readonly />
+                                <span class="input-group-addon" id="addonConsumptionTemperature"><sup>о</sup>C</span>
+                            </div>
+                            @Html.ValidationMessageFor(model => model.ConsumptionTemperature, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel panel-default">
+                <div class="panel-heading">Средний тепловой поток</div>
+                <div class="panel-body">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.AverageHeatFlowZone1, htmlAttributes: new { @class = "control-label " + labelWidth })
+                        <div class="@inputWidth">
+                            <div class="input-group">
+                                <input type="number" step="0.01" @Html.Raw(Model.StyleAverageHeatFlowZone1) class="form-control" name="AverageHeatFlowZone1" value="@Model.AverageHeatFlowZone1" aria-describedby="addonAverageHeatFlowZone1" readonly />
+                                <span class="input-group-addon" id="addonAverageHeatFlowZone1">Вт/м<sup>2</sup></span>
+                            </div>
+                            @Html.ValidationMessageFor(model => model.AverageHeatFlowZone1, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.AverageHeatFlowZone2, htmlAttributes: new { @class = "control-label " + labelWidth })
+                        <div class="@inputWidth">
+                            <div class="input-group">
+                                <input type="number" step="0.01" @Html.Raw(Model.StyleAverageHeatFlowZone2) class="form-control" name="AverageHeatFlowZone2" value="@Model.AverageHeatFlowZone2" aria-describedby="addonAverageHeatFlowZone2" readonly />
+                                <span class="input-group-addon" id="addonAverageHeatFlowZone2">Вт/м<sup>2</sup></span>
+                            </div>
+                            @Html.ValidationMessageFor(model => model.AverageHeatFlowZone2, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel panel-default">
+                <div class="panel-heading">Температура массы слитка</div>
+                <div class="panel-body">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.BarTemperatureSection1, htmlAttributes: new { @class = "control-label " + labelWidth })
+                        <div class="@inputWidth">
+                            <div class="input-group">
+                                <input type="number" step="0.01" @Html.Raw(Model.StyleBarTemperatureSection1) class="form-control" name="BarTemperatureSection1" value="@Model.BarTemperatureSection1" aria-describedby="addonBarTemperatureSection1" readonly />
+                                <span class="input-group-addon" id="addonBarTemperatureSection1"><sup>о</sup>C</span>
+                            </div>
+                            @Html.ValidationMessageFor(model => model.BarTemperatureSection1, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.BarTemperatureSection2, htmlAttributes: new { @class = "control-label " + labelWidth })
+                        <div class="@inputWidth">
+                            <div class="input-group">
+                                <input type="number" step="0.01" @Html.Raw(Model.StyleBarTemperatureSection2) class="form-control" name="BarTemperatureSection2" value="@Model.BarTemperatureSection2" aria-describedby="addonBarTemperatureSection2" readonly />
+                                <span class="input-group-addon" id="addonBarTemperatureSection2"><sup>о</sup>C</span>
+                            </div>
+                            @Html.ValidationMessageFor(model => model.BarTemperatureSection2, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.BarTemperatureSection3, htmlAttributes: new { @class = "control-label " + labelWidth })
+                        <div class="@inputWidth">
+                            <div class="input-group">
+                                <input type="number" step="0.01" @Html.Raw(Model.StyleBarTemperatureSection3) class="form-control" name="BarTemperatureSection3" value="@Model.BarTemperatureSection3" aria-describedby="addonBarTemperatureSection3" readonly />
+                                <span class="input-group-addon" id="addonBarTemperatureSection3"><sup>о</sup>C</span>
+                            </div>
+                            @Html.ValidationMessageFor(model => model.BarTemperatureSection3, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel panel-default">
+                <div class="panel-heading">Удельный тепловой поток</div>
+                <div class="panel-body">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.SummaryHeatFlowSector0, htmlAttributes: new { @class = "control-label " + labelWidth })
+                        <div class="@inputWidth">
+                            <div class="input-group">
+                                <input type="number" step="0.01" @Html.Raw(Model.StyleSummaryHeatFlowSector0) class="form-control" name="SummaryHeatFlowSector0" value="@Model.SummaryHeatFlowSector0" aria-describedby="addonSummaryHeatFlowSector0" readonly />
+                                <span class="input-group-addon" id="addonSummaryHeatFlowSector0">Вт/м<sup>2</sup></span>
+                            </div>
+                            @Html.ValidationMessageFor(model => model.SummaryHeatFlowSector0, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.SummaryHeatFlowSector1Zone1, htmlAttributes: new { @class = "control-label " + labelWidth })
+                        <div class="@inputWidth">
+                            <div class="input-group">
+                                <input type="number" step="0.01" @Html.Raw(Model.StyleSummaryHeatFlowSector1Zone1) class="form-control" name="SummaryHeatFlowSector1Zone1" value="@Model.SummaryHeatFlowSector1Zone1" aria-describedby="addonSummaryHeatFlowSector1Zone1" readonly />
+                                <span class="input-group-addon" id="addonSummaryHeatFlowSector1Zone1">Вт/м<sup>2</sup></span>
+                            </div>
+                            @Html.ValidationMessageFor(model => model.SummaryHeatFlowSector1Zone1, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.SummaryHeatFlowSector1Zone2, htmlAttributes: new { @class = "control-label " + labelWidth })
+                        <div class="@inputWidth">
+                            <div class="input-group">
+                                <input type="number" step="0.01" @Html.Raw(Model.StyleSummaryHeatFlowSector1Zone2) class="form-control" name="SummaryHeatFlowSector1Zone2" value="@Model.SummaryHeatFlowSector1Zone2" aria-describedby="addonSummaryHeatFlowSector1Zone2" readonly />
+                                <span class="input-group-addon" id="addonSummaryHeatFlowSector1Zone2">Вт/м<sup>2</sup></span>
+                            </div>
+                            @Html.ValidationMessageFor(model => model.SummaryHeatFlowSector1Zone2, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.SummaryHeatFlowSector2, htmlAttributes: new { @class = "control-label " + labelWidth })
+                        <div class="@inputWidth">
+                            <div class="input-group">
+                                <input type="number" step="0.01" @Html.Raw(Model.StyleSummaryHeatFlowSector2) class="form-control" name="SummaryHeatFlowSector2" value="@Model.SummaryHeatFlowSector2" aria-describedby="addonSummaryHeatFlowSector2" readonly />
+                                <span class="input-group-addon" id="addonSummaryHeatFlowSector2">Вт/м<sup>2</sup></span>
+                            </div>
+                            @Html.ValidationMessageFor(model => model.SummaryHeatFlowSector2, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        <div class="row" style="margin-top:40px;">
+            <div class="col-md-8 col-md-offset-2">
+                <h4>Длина печи по зонам</h4>
+                <hr />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <canvas id="lengthChart"></canvas>
+            </div>
+        </div>
+
+        <div class="row" style="margin-top:40px;">
+            <div class="col-md-8 col-md-offset-2">
+                <h4>Тепловые потоки</h4>
+                <hr />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <canvas id="heatFlowChart"></canvas>
+            </div>
+        </div>
+
+        <div class="row" style="margin-top:40px;">
+            <div class="col-md-8 col-md-offset-2">
+                <h4>Температура заготовок</h4>
+                <hr />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <canvas id="temperatureChart"></canvas>
+            </div>
+        </div>
+        <div class="row" style="margin-top:40px;">
+            <div class="col-md-8 col-md-offset-2">
+                <h4>Время нагрева заготовок по зонам</h4>
+                <hr />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <canvas id="timeChart"></canvas>
+            </div>
+        </div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Scripts/Chart.min.js"></script>
+
+    <script>
+
+        $(document).ready(function () {
+
+            var timeCanvas = document.getElementById('timeChart').getContext('2d');
+            var timeChart = new Chart(timeCanvas, {
+                type: 'horizontalBar',
+                data: {
+                    labels: [''],
+                    datasets: [{
+                        label: ['Зона 1'],
+                        data: [@Model.HeatingTimeZone1],
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 1)'
+                        ]
+                    }, {
+                        label: ['Зона 2'],
+                        data: [@Model.HeatingTimeZone2],
+                        backgroundColor: [
+                            'rgba(54, 162, 235, 1)'
+                        ]
+                        }, {
+                        label: ['Зона 3'],
+                        data: [@Model.HeatingTimeZone3],
+                        backgroundColor: [
+                            'rgba(255, 206, 86, 1)'
+                        ]
+                    }],
+                },
+                options: {
+                    scales: {
+                        xAxes: [{
+                            stacked: true,
+                            scaleLabel: {
+                                display: true,
+                                labelString: 'часов'
+                            },
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }]
+                    }
+                }
+            });
+
+            var lengthCanvas = document.getElementById('lengthChart').getContext('2d');
+            var lengthChart = new Chart(lengthCanvas, {
+                type: 'horizontalBar',
+                data: {
+                    labels: [''],
+                    datasets: [{
+                        label: ['Зона 1'],
+                        data: [@Model.LengthZone1],
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 1)'
+                        ]
+                    }, {
+                        label: ['Зона 2'],
+                        data: [@Model.LengthZone2],
+                        backgroundColor: [
+                            'rgba(54, 162, 235, 1)'
+                        ]
+                        }, {
+                        label: ['Зона 3'],
+                        data: [@Model.LengthZone3],
+                        backgroundColor: [
+                            'rgba(255, 206, 86, 1)'
+                        ]
+                    }],
+                },
+                options: {
+                    scales: {
+                        xAxes: [{
+                            stacked: true,
+                            scaleLabel: {
+                                display: true,
+                                labelString: 'метров'
+                            },
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }]
+                    }
+                }
+            });
+
+            var heatFlowCanvas = document.getElementById('heatFlowChart').getContext('2d');
+            var heatFlowChart = new Chart(heatFlowCanvas, {
+                type: 'bar',
+                data: {
+                    labels: [''],
+                    datasets: [{
+                        label: ['В сечении 0'],
+                        data: [@Model.SummaryHeatFlowSector0],
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 1)'
+                        ]
+                    }, {
+                        label: ['В сечении 1 для зоны 1'],
+                        data: [@Model.SummaryHeatFlowSector1Zone1],
+                        backgroundColor: [
+                            'rgba(54, 162, 235, 1)'
+                        ]
+                        }, {
+                        label: ['В сечении 1 для зоны 2'],
+                        data: [@Model.SummaryHeatFlowSector1Zone2],
+                        backgroundColor: [
+                            'rgba(255, 206, 86, 1)'
+                        ]
+                    }, {
+                        label: ['В сечении 2'],
+                        data: [@Model.SummaryHeatFlowSector2],
+                        backgroundColor: [
+                            'rgba(75, 192, 192, 1)',
+                        ]
+                    }],
+                },
+                options: {
+                    scales: {
+                        yAxes: [{
+                            scaleLabel: {
+                                display: true,
+                                labelString: 'кДж'
+                            },
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }]
+                    }
+                }
+            });
+
+            var tempCanvas = document.getElementById('temperatureChart').getContext('2d');
+            var tempChart = new Chart(tempCanvas, {
+                type: 'bar',
+                data: {
+                    labels: [''],
+                    datasets: [{
+                        label: ['Зона 1'],
+                        data: [@Model.BarTemperatureSection1],
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 1)'
+                        ]
+                    }, {
+                        label: ['Зона 2'],
+                        data: [@Model.BarTemperatureSection2],
+                        backgroundColor: [
+                            'rgba(54, 162, 235, 1)'
+                        ]
+                        }, {
+                        label: ['Зона 3'],
+                        data: [@Model.BarTemperatureSection3],
+                        backgroundColor: [
+                            'rgba(255, 206, 86, 1)'
+                        ]
+                    }],
+                },
+                options: {
+                    scales: {
+                        yAxes: [{
+                            scaleLabel: {
+                                display: true,
+                                labelString: 'градусов'
+                            },
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }]
+                    }
+                }
+            });
+
+        });
+
+    </script>
+
+}

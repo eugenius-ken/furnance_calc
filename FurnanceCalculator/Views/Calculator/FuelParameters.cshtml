@@ -1,0 +1,74 @@
+﻿@model FurnanceCalculator.ViewModels.FuelParametersView
+
+@{
+    ViewBag.Title = "Параметры топлива";
+    var labelWidth = "col-md-6";
+    var inputWidth = "col-md-6";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div style="text-align:center;">
+        <h1>Исходные данные</h1>
+    </div>
+    <hr />
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2 form-horizontal">
+
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.Id)
+
+            <div class="panel panel-default">
+                <div class="panel-heading">Характеристики топлива</div>
+                <div class="panel-body">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.HeatFull, htmlAttributes: new { @class = "control-label " + labelWidth })
+                        <div class="@inputWidth">
+                            <div class="input-group">
+                                <input type="number" class="form-control" name="HeatFull" value="@Model.HeatFull" aria-describedby="addonHeatFull" />
+                                <span class="input-group-addon" id="addonHeatFull">кДж/м<sup>3</sup></span>
+                            </div>
+                            @Html.ValidationMessageFor(model => model.HeatFull, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.HeatNatural, htmlAttributes: new { @class = "control-label " + labelWidth })
+                        <div class="@inputWidth">
+                            <div class="input-group">
+                                <input type="number" class="form-control" name="HeatNatural" value="@Model.HeatNatural" aria-describedby="addonHeatNatural" />
+                                <span class="input-group-addon" id="addonHeatNatural">кДж/м<sup>3</sup></span>
+                            </div>
+                            @Html.ValidationMessageFor(model => model.HeatNatural, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.HeatBlast, htmlAttributes: new { @class = "control-label " + labelWidth })
+                        <div class="@inputWidth">
+                            <div class="input-group">
+                                <input type="number" class="form-control" name="HeatBlast" value="@Model.HeatBlast" aria-describedby="addonHeatBlast" />
+                                <span class="input-group-addon" id="addonHeatBlast">кДж/м<sup>3</sup></span>
+                            </div>
+                            @Html.ValidationMessageFor(model => model.HeatBlast, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-12">
+                <div class="form-group">
+                    <div class="pull-right">
+                        <input type="submit" value="Рассчитать" class="btn btn-default" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

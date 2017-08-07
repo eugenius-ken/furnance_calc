@@ -1,0 +1,146 @@
+﻿@model FurnanceCalculator.ViewModels.BarParametersView
+
+@{
+    ViewBag.Title = "Характеристики заготовок";
+    var labelWidth = "col-md-6";
+    var inputWidth = "col-md-6";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div style="text-align:center;">
+        <h1>Исходные данные</h1>
+    </div>
+    <hr />
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2 form-horizontal">
+
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.Id)
+
+            <div class="panel panel-default">
+                <div class="panel-heading">Характеристики заготовок</div>
+                <div class="panel-body">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.BarHeight, htmlAttributes: new { @class = "control-label " + labelWidth })
+                        <div class="@inputWidth">
+                            <div class="input-group">
+                                <input type="number" step="0.01" class="form-control" name="BarHeight" value="@Model.BarHeight" aria-describedby="addon-bar-height" />
+                                <span class="input-group-addon" id="addon-bar-height">м</span>
+                            </div>
+                            @Html.ValidationMessageFor(model => model.BarHeight, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.BarThickness, htmlAttributes: new { @class = "control-label " + labelWidth })
+                        <div class="@inputWidth">
+                            <div class="input-group">
+                                <input type="number" step="0.01" class="form-control" name="BarThickness" value="@Model.BarThickness" aria-describedby="addon-bar-thickness" />
+                                <span class="input-group-addon" id="addon-bar-thickness">м</span>
+                            </div>
+                            @Html.ValidationMessageFor(model => model.BarThickness, "", new { @class = "text-danger" })
+                        </div>
+                        
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.BarLength, htmlAttributes: new { @class = "control-label " + labelWidth })
+                        <div class="@inputWidth">
+                            <div class="input-group">
+                                <input type="number" step="0.01" class="form-control" name="BarLength" value="@Model.BarLength" aria-describedby="addon-bar-length" />
+                                <span class="input-group-addon" id="addon-bar-length">м</span>
+                            </div>
+                            @Html.ValidationMessageFor(model => model.BarLength, "", new { @class = "text-danger" })
+                        </div>
+                        
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.BarNumber, htmlAttributes: new { @class = "control-label " + labelWidth })
+                        <div class="@inputWidth">
+                            <input type="number" class="form-control" name="BarNumber" value="@Model.BarNumber" />
+                            @Html.ValidationMessageFor(model => model.BarNumber, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.StartSteelTemperature, htmlAttributes: new { @class = "control-label " + labelWidth })
+                        <div class="@inputWidth">
+                            <div class="input-group">
+                                <input type="number" class="form-control" name="StartSteelTemperature" value="@Model.StartSteelTemperature" aria-describedby="addon-bar-start-steel-temp" />
+                                <span class="input-group-addon" id="addon-bar-start-steel-temp"><sup>о</sup>C</span>
+                            </div>
+                            @Html.ValidationMessageFor(model => model.StartSteelTemperature, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.EndTopSteelTemperature, htmlAttributes: new { @class = "control-label " + labelWidth })
+                        <div class="@inputWidth">
+                            <div class="input-group">
+                                <input type="number" class="form-control" name="EndTopSteelTemperature" value="@Model.EndTopSteelTemperature" aria-describedby="addon-bar-end-top-steel-temp" />
+                                <span class="input-group-addon" id="addon-bar-end-top-steel-temp"><sup>о</sup>C</span>
+                            </div>
+                            @Html.ValidationMessageFor(model => model.EndTopSteelTemperature, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.EndBottomSteelTemperature, htmlAttributes: new { @class = "control-label " + labelWidth })
+                        <div class="@inputWidth">
+                            <div class="input-group">
+                                <input type="number" class="form-control" name="EndBottomSteelTemperature" value="@Model.EndBottomSteelTemperature" aria-describedby="addon-bar-end-bottom-steel-temp" />
+                                <span class="input-group-addon" id="addon-bar-end-bottom-steel-temp"><sup>о</sup>C</span>
+                            </div>
+                            @Html.ValidationMessageFor(model => model.EndBottomSteelTemperature, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.TopSteelTemperatureSector1, htmlAttributes: new { @class = "control-label " + labelWidth })
+                        <div class="@inputWidth">
+                            <div class="input-group">
+                                <input type="number" class="form-control" name="TopSteelTemperatureSector1" value="@Model.TopSteelTemperatureSector1" aria-describedby="addonTopSteelTemperatureSector1" />
+                                <span class="input-group-addon" id="addonTopSteelTemperatureSector1"><sup>о</sup>C</span>
+                            </div>
+                            @Html.ValidationMessageFor(model => model.TopSteelTemperatureSector1, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.SteelTypeForDensity, htmlAttributes: new { @class = "control-label " + labelWidth })
+                        <div class="@inputWidth">
+                            @Html.EnumDropDownListFor(model => model.SteelTypeForDensity, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.SteelTypeForDensity, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.SteelTypeProperty, htmlAttributes: new { @class = "control-label " + labelWidth })
+                        <div class="@inputWidth">
+                            @Html.EnumDropDownListFor(model => model.SteelTypeProperty, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.SteelTypeProperty, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-12">
+                <div class="form-group">
+                    <div class="pull-right">
+                        <input type="submit" value="Далее" class="btn btn-default" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+

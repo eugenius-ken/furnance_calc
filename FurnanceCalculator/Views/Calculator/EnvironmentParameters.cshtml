@@ -1,0 +1,85 @@
+﻿@model FurnanceCalculator.ViewModels.EnvironmentParametersView
+
+@{
+    ViewBag.Title = "Характеристики среды";
+    var labelWidth = "col-md-6";
+    var inputWidth = "col-md-6";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div style="text-align:center;">
+        <h1>Исходные данные</h1>
+    </div>
+    <hr />
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2 form-horizontal">
+
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.Id)
+
+            <div class="panel panel-default">
+                <div class="panel-heading">Характеристики среды</div>
+                <div class="panel-body">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.AirTemperature, htmlAttributes: new { @class = "control-label " + labelWidth })
+                        <div class="@inputWidth">
+                            <div class="input-group">
+                                <input type="number" class="form-control" name="AirTemperature" value="@Model.AirTemperature" aria-describedby="addonAirTemperature" />
+                                <span class="input-group-addon" id="addonAirTemperature"><sup>о</sup>C</span>
+                            </div>
+                            @Html.ValidationMessageFor(model => model.AirTemperature, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.GasTemperatureSector0, htmlAttributes: new { @class = "control-label " + labelWidth })
+                        <div class="@inputWidth">
+                            <div class="input-group">
+                                <input type="number" class="form-control" name="GasTemperatureSector0" value="@Model.GasTemperatureSector0" aria-describedby="addonGasTemperatureSector0" />
+                                <span class="input-group-addon" id="addonGasTemperatureSector0"><sup>о</sup>C</span>
+                            </div>
+                            @Html.ValidationMessageFor(model => model.GasTemperatureSector0, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.GasTemperatureSector1, htmlAttributes: new { @class = "control-label " + labelWidth })
+                        <div class="@inputWidth">
+                            <div class="input-group">
+                                <input type="number" class="form-control" name="GasTemperatureSector1" value="@Model.GasTemperatureSector1" aria-describedby="addonGasTemperatureSector1" />
+                                <span class="input-group-addon" id="addonGasTemperatureSector1"><sup>о</sup>C</span>
+                            </div>
+                            @Html.ValidationMessageFor(model => model.GasTemperatureSector1, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.GasTemperatureSector2, htmlAttributes: new { @class = "control-label " + labelWidth })
+                        <div class="@inputWidth">
+                            <div class="input-group">
+                                <input type="number" class="form-control" name="GasTemperatureSector2" value="@Model.GasTemperatureSector2" aria-describedby="addonGasTemperatureSector2" />
+                                <span class="input-group-addon" id="addonGasTemperatureSector2"><sup>о</sup>C</span>
+                            </div>
+                            @Html.ValidationMessageFor(model => model.GasTemperatureSector2, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-12">
+                <div class="form-group">
+                    <div class="pull-right">
+                        <input type="submit" value="Продолжить" class="btn btn-default" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -1,0 +1,49 @@
+﻿@model FurnanceCalculator.ViewModels.VariantIndexView
+
+@{
+    ViewBag.Title = "Варианты";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <h2>Варианты расчетов</h2>
+        <hr />
+    </div>
+</div>
+
+<div class="row" style="margin-top:20px;">
+
+    <div class="col-md-12">
+        <table class="table table-striped">
+            <tr>
+                <th>Название</th>
+                <th>Описание</th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model.Variants)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Description)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Редактировать", "Edit", new { id = item.Id }) |
+                        @Html.ActionLink("Удалить", "Delete", new { id = item.Id }) |
+                        @Html.ActionLink("Исходные данные", "BarParameters", new { id = item.Id })
+                        @if (item.ResultIsExists)
+                        {
+                            @:| @Html.ActionLink("Результаты", "Results", new { id = item.Id })
+                        }
+                    </td>
+                </tr>
+            }
+        </table>
+        <p>
+            <a href="@Url.Action("Create")" class="btn btn-default pull-right">Добавить</a>
+        </p>
+    </div>
+</div>

@@ -1,0 +1,247 @@
+﻿@model FurnanceCalculator.Models.InputData
+
+@{
+    ViewBag.Title = "Исходные данные для расчета";
+    var labelWidth = "col-md-6";
+    var inputWidth = "col-md-6";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div style="text-align:center;">
+        <h1>Исходные данные</h1>
+    </div>
+    <hr />
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2 form-horizontal">
+
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+            <div class="panel panel-default">
+                <div class="panel-heading">Характеристики заготовок</div>
+                <div class="panel-body">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.BarHeight, htmlAttributes: new { @class = "control-label " + labelWidth })
+                        <div class="@inputWidth">
+                            @Html.TextBoxFor(model => model.BarHeight, new { @class = "form-control", type = "number", step = "0.01" })
+                            @Html.ValidationMessageFor(model => model.BarHeight, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.BarThickness, htmlAttributes: new { @class = "control-label " + labelWidth })
+                        <div class="@inputWidth">
+                            @Html.TextBoxFor(model => model.BarThickness, new { @class = "form-control", type = "number", step = "0.01" })
+                            @Html.ValidationMessageFor(model => model.BarThickness, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.BarLength, htmlAttributes: new { @class = "control-label " + labelWidth })
+                        <div class="@inputWidth">
+                            @Html.TextBoxFor(model => model.BarLength, new { @class = "form-control", type = "number", step = "0.01" })
+                            @Html.ValidationMessageFor(model => model.BarLength, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.BarNumber, htmlAttributes: new { @class = "control-label " + labelWidth })
+                        <div class="@inputWidth">
+                            @Html.TextBoxFor(model => model.BarNumber, new { @class = "form-control", type = "number" })
+                            @Html.ValidationMessageFor(model => model.BarNumber, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.StartSteelTemperature, htmlAttributes: new { @class = "control-label " + labelWidth })
+                        <div class="@inputWidth">
+                            @Html.TextBoxFor(model => model.StartSteelTemperature, new { @class = "form-control", type = "number" })
+                            @Html.ValidationMessageFor(model => model.StartSteelTemperature, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.EndTopSteelTemperature, htmlAttributes: new { @class = "control-label " + labelWidth })
+                        <div class="@inputWidth">
+                            @Html.TextBoxFor(model => model.EndTopSteelTemperature, new { @class = "form-control", type = "number" })
+                            @Html.ValidationMessageFor(model => model.EndTopSteelTemperature, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.EndBottomSteelTemperature, htmlAttributes: new { @class = "control-label " + labelWidth })
+                        <div class="@inputWidth">
+                            @Html.TextBoxFor(model => model.EndBottomSteelTemperature, new { @class = "form-control", type = "number" })
+                            @Html.ValidationMessageFor(model => model.EndBottomSteelTemperature, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.TopSteelTemperatureSector1, htmlAttributes: new { @class = "control-label " + labelWidth })
+                        <div class="@inputWidth">
+                            @Html.TextBoxFor(model => model.TopSteelTemperatureSector1, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.TopSteelTemperatureSector1, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.SteelTypeForDensity, htmlAttributes: new { @class = "control-label " + labelWidth })
+                        <div class="@inputWidth">
+                            @Html.EnumDropDownListFor(model => model.SteelTypeForDensity, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.SteelTypeForDensity, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.SteelTypeProperty, htmlAttributes: new { @class = "control-label " + labelWidth })
+                        <div class="@inputWidth">
+                            @Html.EnumDropDownListFor(model => model.SteelTypeProperty, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.SteelTypeProperty, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel panel-default">
+                <div class="panel-heading">Характеристики печи</div>
+                <div class="panel-body">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.FurnanceHeightZone1, htmlAttributes: new { @class = "control-label " + labelWidth })
+                        <div class="@inputWidth">
+                            @Html.TextBoxFor(model => model.FurnanceHeightZone1, new { @class = "form-control", type = "number", step = "0.01" })
+                            @Html.ValidationMessageFor(model => model.FurnanceHeightZone1, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.WorkHeightSector0, htmlAttributes: new { @class = "control-label " + labelWidth })
+                        <div class="@inputWidth">
+                            @Html.TextBoxFor(model => model.WorkHeightSector0, new { @class = "form-control", type = "number", step = "0.01" })
+                            @Html.ValidationMessageFor(model => model.WorkHeightSector0, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.WorkHeightSector1, htmlAttributes: new { @class = "control-label " + labelWidth })
+                        <div class="@inputWidth">
+                            @Html.TextBoxFor(model => model.WorkHeightSector1, new { @class = "form-control", type = "number", step = "0.01" })
+                            @Html.ValidationMessageFor(model => model.WorkHeightSector1, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.WorkHeightSector2, htmlAttributes: new { @class = "control-label " + labelWidth })
+                        <div class="@inputWidth">
+                            @Html.TextBoxFor(model => model.WorkHeightSector2, new { @class = "form-control", type = "number", step = "0.01" })
+                            @Html.ValidationMessageFor(model => model.WorkHeightSector2, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.FurnanceProductivity, htmlAttributes: new { @class = "control-label " + labelWidth })
+                        <div class="@inputWidth">
+                            @Html.TextBoxFor(model => model.FurnanceProductivity, new { @class = "form-control", type = "number", step = "0.01" })
+                            @Html.ValidationMessageFor(model => model.FurnanceProductivity, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.FurnanceWidth, htmlAttributes: new { @class = "control-label " + labelWidth })
+                        <div class="@inputWidth">
+                            @Html.TextBoxFor(model => model.FurnanceWidth, new { @class = "form-control", type = "number", step = "0.01" })
+                            @Html.ValidationMessageFor(model => model.FurnanceWidth, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.TorchType, htmlAttributes: new { @class = "control-label " + labelWidth })
+                        <div class="@inputWidth">
+                            @Html.EnumDropDownListFor(model => model.TorchType, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.TorchType, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel panel-default">
+                <div class="panel-heading">Характеристики среды</div>
+                <div class="panel-body">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.AirTemperature, htmlAttributes: new { @class = "control-label " + labelWidth })
+                        <div class="@inputWidth">
+                            @Html.TextBoxFor(model => model.AirTemperature, new { @class = "form-control", type = "number" })
+                            @Html.ValidationMessageFor(model => model.AirTemperature, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.GasTemperatureSector0, htmlAttributes: new { @class = "control-label " + labelWidth })
+                        <div class="@inputWidth">
+                            @Html.TextBoxFor(model => model.GasTemperatureSector0, new { @class = "form-control", type = "number" })
+                            @Html.ValidationMessageFor(model => model.GasTemperatureSector0, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.GasTemperatureSector1, htmlAttributes: new { @class = "control-label " + labelWidth })
+                        <div class="@inputWidth">
+                            @Html.TextBoxFor(model => model.GasTemperatureSector1, new { @class = "form-control", type = "number" })
+                            @Html.ValidationMessageFor(model => model.GasTemperatureSector1, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.GasTemperatureSector2, htmlAttributes: new { @class = "control-label " + labelWidth })
+                        <div class="@inputWidth">
+                            @Html.TextBoxFor(model => model.GasTemperatureSector2, new { @class = "form-control", type = "number" })
+                            @Html.ValidationMessageFor(model => model.GasTemperatureSector2, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel panel-default">
+                <div class="panel-heading">Характеристики топлива</div>
+                <div class="panel-body">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.HeatFull, htmlAttributes: new { @class = "control-label " + labelWidth })
+                        <div class="@inputWidth">
+                            @Html.TextBoxFor(model => model.HeatFull, new { @class = "form-control", type = "number" })
+                            @Html.ValidationMessageFor(model => model.HeatFull, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.HeatNatural, htmlAttributes: new { @class = "control-label " + labelWidth })
+                        <div class="@inputWidth">
+                            @Html.TextBoxFor(model => model.HeatNatural, new { @class = "form-control", type = "number" })
+                            @Html.ValidationMessageFor(model => model.HeatNatural, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.HeatBlast, htmlAttributes: new { @class = "control-label " + labelWidth })
+                        <div class="@inputWidth">
+                            @Html.TextBoxFor(model => model.HeatBlast, new { @class = "form-control", type = "number" })
+                            @Html.ValidationMessageFor(model => model.HeatBlast, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-12">
+                <div class="form-group">
+                    <div class="pull-right">
+                        <input type="submit" value="Рассчитать" class="btn btn-default" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
